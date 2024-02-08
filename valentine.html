@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine</title>
+</head>
+
+<body id="body">
+    <div class="container round">
+        <div class="love love1"></div>
+        <div class="love love2"></div>
+        <div class="love love3"></div>
+        <div class="love love4"></div>
+        <div class="round details">
+            <h3>Happy Valentine</h3>
+            <h1>My Friends</h1>
+            <h5 class="note">Develop by Bijay Adhikari</h5>
+        </div>
+    </div>
+
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: white;
+        }
+    </style>
+
+
+    <!-- Main Base Box/Panel Design Start Here -->
+    <style>
+        body
+        {
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            display: grid;
+            width: 1080px;
+            height: 600px;
+            box-shadow: -3px -3px 5px rgb(240, 240, 240), 3px 3px 5px rgb(200, 200, 200);
+        }
+
+        .round {
+            border-radius: 5px;
+        }
+    </style>
+    <!-- Main Base Box/Panel Design End Here -->
+
+
+    <!-- Style For LOVE Start Here -->
+    <style>
+        .love {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transform: rotate(-45deg);
+        }
+
+        .love::before,
+        .love::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .love::before {
+            top: -50%;
+            left: 0;
+        }
+
+        .love::after {
+            top: 0;
+            left: 50%;
+        }
+
+        .love1 {
+            transform: rotate(270deg);
+        }
+
+        .love2 {
+            transform: rotate(15deg);
+            right: 0;
+        }
+
+        .love3 {
+            transform: rotate(270deg);
+            bottom: 0;
+        }
+
+        .love4 {
+            transform: rotate(90deg);
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+    <!-- Style For LOVE End Here -->
+
+
+    <!-- Center Design -->
+    <style>
+        .details {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 70%;
+            height: 60%;
+            margin: auto;
+            box-shadow: 0px 0px 50px rgb(250, 150, 220);
+        }
+
+        h1 {
+            font-weight: bold;
+            font-size: 60px;
+        }
+
+        h3 {
+            font-size: 30px;
+        }
+
+        .note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+
+        }
+    </style>
+
+<style>
+        
+    .love-fly
+    {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        z-index: 100;
+    }
+</style>
+
+
+</body>
+
+</html>
+
+<script>
+ function createFlyingHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'love love-fly';
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.top = Math.random() * window.innerHeight + 'px';
+  heart.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+  document.getElementById('body').appendChild(heart);
+
+  // Define a random speed for the heart
+  const speedX = (Math.random() - 0.5) * 2; // Random horizontal speed
+  const speedY = (Math.random() - 0.5) * 2; // Random vertical speed
+
+  // Move the heart continuously
+  const moveHeart = () => {
+    // Update heart position
+    const rect = heart.getBoundingClientRect();
+    heart.style.left = rect.left + speedX + 'px';
+    heart.style.top = rect.top + speedY + 'px';
+
+    // Check if the heart is out of the viewport
+    if (
+      rect.left < -heart.offsetWidth ||
+      rect.left > window.innerWidth ||
+      rect.top < -heart.offsetHeight ||
+      rect.top > window.innerHeight
+    ) {
+      // If heart is out of the viewport, remove it
+      heart.remove();
+      clearInterval(moveInterval);
+    }
+  };
+
+  // Move the heart at regular intervals
+  const moveInterval = setInterval(moveHeart, 20); // Update every 20 milliseconds
+}
+
+// Create flying hearts at random intervals
+setInterval(createFlyingHeart, Math.random() * 500); // Random interval between 1 and 4 seconds
+
+</script>
